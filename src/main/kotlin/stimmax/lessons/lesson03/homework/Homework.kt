@@ -13,7 +13,7 @@ var place: String = "Royal Street"
 private val budget: String = "подробная информация с перечислением поставщиков и сумм для внутреннего пользования"
 
 // 5. Количество участников
-lateinit var participantsCount: Int
+var participantsCount: Int = 0
 
 // 6. Длительность хакатона
 val durationHackaton: Int = 3
@@ -28,7 +28,7 @@ var statusHackaton: String = "Не начался"
 var sponsors: String = "Спонсоры"
 
 // 10. Бюджет мероприятия
-private var budget: Int = 1000000
+private var budgetEvent: Int = 1000000
 
 // 11. Текущий уровень доступа к интернету
 var internetStatus: Boolean = true
@@ -79,7 +79,7 @@ var speedLimitFactor: Double = 0.5
 var lightLevel: Int = 5
 
 // 27. Лог событий мероприятия
-var eventLog: String by lazy {
+val eventLog: String by lazy {
     "Начало мероприятия"
 }
 
