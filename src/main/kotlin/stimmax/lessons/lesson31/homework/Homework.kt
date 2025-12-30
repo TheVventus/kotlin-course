@@ -5,6 +5,36 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import kotlin.test.assertEquals
 
+
+class PhoneNumberFormatter {
+
+    fun formatPhoneNumber(input: String): String {
+        val digits = input.replace("\\D".toRegex(), "")
+
+        if (digits.length != 10 && digits.length != 11) {
+            throw IllegalArgumentException("Невалидная длина номера")
+        }
+
+        val normalizedDigits = if (digits.length == 11) {
+            if (digits.startsWith("7") || digits.startsWith("8")) {
+                digits.substring(1)
+            } else {
+                throw IllegalArgumentException("Невалидный код страны")
+            }
+        } else {
+            digits
+        }
+
+        val code = normalizedDigits.substring(0, 3)
+        val part1 = normalizedDigits.substring(3, 6)
+        val part2 = normalizedDigits.substring(6, 8)
+        val part3 = normalizedDigits.substring(8, 10)
+
+        return "+7 ($code) $part1-$part2-$part3"
+    }
+}
+
+
 class PhoneNumberFormatterTest {
 
     @ParameterizedTest
